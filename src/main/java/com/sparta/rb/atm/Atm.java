@@ -65,13 +65,13 @@ public class Atm {
         this.availableOnes = availableOnes;
     }
 
-    public void withdrawValue(int withdrawalAmount) {
+    public String withdrawValue(int withdrawalAmount) {
 
-        System.out.println("Customer withdraws £" + withdrawalAmount);
+        String returnOutput = "Customer withdraws £" + withdrawalAmount;
 
         int fiftiesUsed = withdrawalAmount / 50;
         if (fiftiesUsed > 0) {
-            System.out.println(fiftiesUsed + " x £50");
+            returnOutput = returnOutput +  "\n" + fiftiesUsed + " x £50";
         }
         setAvailableFifties(getAvailableFifties() - fiftiesUsed);
         int remainingValue = withdrawalAmount % 50;
@@ -79,7 +79,7 @@ public class Atm {
         if (remainingValue > 0) {
             int twentiesUsed = remainingValue / 20;
             if (twentiesUsed > 0) {
-                System.out.println(twentiesUsed + " x £20");
+                returnOutput = returnOutput +  "\n" + twentiesUsed + " x £20";
             }
             setAvailableTwenties(getAvailableTwenties() - twentiesUsed);
             remainingValue = remainingValue % 20;
@@ -87,7 +87,7 @@ public class Atm {
             if (remainingValue > 0) {
                 int tensUsed = remainingValue / 10;
                 if (tensUsed > 0) {
-                    System.out.println(tensUsed + " x £10");
+                    returnOutput = returnOutput +  "\n" + tensUsed + " x £10";
                 }
                 setAvailableTens(getAvailableTens() - tensUsed);
                 remainingValue = remainingValue % 10;
@@ -95,7 +95,7 @@ public class Atm {
                 if (remainingValue > 0) {
                     int fivesUsed = remainingValue / 5;
                     if (fivesUsed > 0) {
-                        System.out.println(fivesUsed + " x £5");
+                        returnOutput = returnOutput +  "\n" + fivesUsed + " x £5";
                     }
                     setAvailableFives(getAvailableFives() - fivesUsed);
                     remainingValue = remainingValue % 5;
@@ -103,29 +103,39 @@ public class Atm {
                     if (remainingValue > 0) {
                         int twosUsed = remainingValue / 2;
                         if (twosUsed > 0) {
-                            System.out.println(twosUsed + " x £2");
+                            returnOutput = returnOutput +  "\n" + twosUsed + " x £2";
                         }
                         setAvailableTwos(getAvailableTwos() - twosUsed);
                         remainingValue = remainingValue % 2;
 
                         if (remainingValue > 0) {
-                                System.out.println(remainingValue + " x £1");
+                            returnOutput = returnOutput +  "\n" + remainingValue + " x £1";
                             setAvailableOnes(getAvailableOnes() - remainingValue);
                         }
                     }
                 }
             }
         }
+
+        return returnOutput;
+
     }
 
-    public void getAllAvailableAmounts() {
-        System.out.println("Value quantity of units");
-        System.out.println("50\t" + getAvailableFifties());
-        System.out.println("20\t" + getAvailableTwenties());
-        System.out.println("10\t" + getAvailableTens());
-        System.out.println("5\t" + getAvailableFives());
-        System.out.println("2\t" + getAvailableTwos());
-        System.out.println("1\t" + getAvailableOnes());
+    public String getAllAvailableAmounts() {
+        return ("Value  quantity of units" +
+                "\n50\t" + getAvailableFifties() +
+                "\n20\t" + getAvailableTwenties() +
+                "\n10\t" + getAvailableTens() +
+                "\n5\t" + getAvailableFives() +
+                "\n2\t" + getAvailableTwos() +
+                "\n1\t" + getAvailableOnes());
+//        System.out.println("Value quantity of units");
+//        System.out.println("50\t" + getAvailableFifties());
+//        System.out.println("20\t" + getAvailableTwenties());
+//        System.out.println("10\t" + getAvailableTens());
+//        System.out.println("5\t" + getAvailableFives());
+//        System.out.println("2\t" + getAvailableTwos());
+//        System.out.println("1\t" + getAvailableOnes());
 
     }
 }
